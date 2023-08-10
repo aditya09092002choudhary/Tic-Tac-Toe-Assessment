@@ -3,6 +3,7 @@ let popupRef = document.querySelector(".popup");
 let newgameBtn = document.getElementById("new-game");
 let restartBtn = document.getElementById("restart");
 let msgRef = document.getElementById("message");
+let playerInfo = document.querySelector(".playerInfo");
 
 //Winning Pattern Array
 let winningPattern = [
@@ -91,11 +92,13 @@ btnRef.forEach((element) => {
       //Display X
       element.innerText = "X";
       element.disabled = true;
+      playerInfo.innerHTML = "O";
     } else {
       xTurn = true;
       //Display Y
       element.innerText = "O";
       element.disabled = true;
+      playerInfo.innerHTML = "X";
     }
     //Increment count on each click
     count += 1;
