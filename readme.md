@@ -13,7 +13,7 @@ Welcome to the Tic Tac Toe Game repository! This is a simple web-based implement
 5. Players take turns clicking on an empty cell on the grid to place their respective symbols.
 6. The first player to get three of their symbols in a row, column, or diagonal wins the game.
 7. If no player achieves three in a row and the board is full, the game ends in a draw.
-8. To restart the game at any point, simply refresh the page.
+8. To restart the game at any point, simply refresh the page or can click on "New Game".
 
 ## Features
 
@@ -35,3 +35,4 @@ Welcome to the Tic Tac Toe Game repository! This is a simple web-based implement
 - `index.html`: The main HTML file containing the game board and user interface.
 - `style.css`: The CSS file for styling the game board and UI elements.
 - `script.js`: The JavaScript file containing the game logic and interactivity.
+- `images`: This folder contains the images to make the application attractive
