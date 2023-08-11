@@ -24,6 +24,7 @@ let count = 0;
 //Disable All Buttons
 const disableButtons = () => {
   btnRef.forEach((element) => (element.disabled = true));
+
   //enable popup
   popupRef.classList.remove("hide");
 };
@@ -34,6 +35,7 @@ const enableButtons = () => {
     element.innerText = "";
     element.disabled = false;
   });
+
   //disable popup
   popupRef.classList.add("hide");
 };
@@ -41,6 +43,7 @@ const enableButtons = () => {
 //This function is executed when a player wins
 const winFunction = (letter) => {
   disableButtons();
+  
   if (letter == "X") {
     msgRef.innerHTML = "&#x1F389; <br> 'X' Wins";
   } else {
@@ -59,6 +62,8 @@ newgameBtn.addEventListener("click", () => {
   count = 0;
   enableButtons();
 });
+
+//Restart Game
 restartBtn.addEventListener("click", () => {
   count = 0;
   enableButtons();
@@ -67,18 +72,19 @@ restartBtn.addEventListener("click", () => {
 //Win Logic
 const winChecker = () => {
   //Loop through all win patterns
-  for (let i of winningPattern) {
-    let [element1, element2, element3] = [
-      btnRef[i[0]].innerText,
-      btnRef[i[1]].innerText,
-      btnRef[i[2]].innerText,
+  for (let pattern of winningPattern) {
+    let [ele1, ele2, ele3] = [
+      btnRef[pattern[0]].innerText,
+      btnRef[pattern[1]].innerText,
+      btnRef[pattern[2]].innerText,
     ];
+
     //Check if elements are filled
     //If 3 empty elements are same and would give win as would
-    if (element1 != "" && (element2 != "") & (element3 != "")) {
-      if (element1 == element2 && element2 == element3) {
+    if (ele1 != "" && (ele2 != "") & (ele3 != "")) {
+      if (ele1 == ele2 && ele2 == ele3) {
         //If all 3 buttons have same values then pass the value to winFunction
-        winFunction(element1);
+        winFunction(ele1);
       }
     }
   }
@@ -87,27 +93,35 @@ const winChecker = () => {
 //Display X/O on click
 btnRef.forEach((element) => {
   element.addEventListener("click", () => {
+
     if (xTurn) {
       xTurn = false;
       //Display X
       element.innerText = "X";
-      element.disabled = true;
       playerInfo.innerHTML = "O";
     } else {
       xTurn = true;
-      //Display Y
+      //Display O
       element.innerText = "O";
-      element.disabled = true;
       playerInfo.innerHTML = "X";
     }
+
+    //Disable button after one clicked 
+    element.disabled = true;
+
     //Increment count on each click
     count += 1;
     if (count == 9) {
       drawFunction();
     }
-    //Check for win on every click
-    winChecker();
+
+    //Check for win after 4 click because 
+    //no player can win before that
+    if(count > 4){
+      winChecker();
+    }
   });
 });
+
 //Enable Buttons and disable popup on page load
 window.onload = enableButtons;
